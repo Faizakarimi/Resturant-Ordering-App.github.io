@@ -269,13 +269,14 @@ input {
 }
 
 .thanks-note {
-  width: 200px;
-  height: 150px;
+  width: 400px;
+  height: 80px;
   color: #5E7636;
-
   font-size: 25px;
-  margin: 0 auto;
+  margin: 30px  auto auto auto;
   padding: 10px;
-
+  background-color: #e0f7ba;
+  border-radius: 3px;
+  
 
 }
