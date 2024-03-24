@@ -5,13 +5,6 @@ import { menuArray } from "./data.js";
 const checkoutEL = document.getElementById('checkout-container')
 const paymentForm = document.getElementById('payment-form')
 const paymentSectionEl = document.getElementById('payment-section')
-const nameInput = document.getElementById('name')
-
-
-
-
-
-
 let totalPrice = 0
 let ordersArray = []
 let name = ''
