@@ -5,12 +5,18 @@ import { menuArray } from "./data.js";
 const checkoutEL = document.getElementById('checkout-container')
 const paymentForm = document.getElementById('payment-form')
 const paymentSectionEl = document.getElementById('payment-section')
+const nameInput = document.getElementById('name')
+
+
+
 
 
 
 let totalPrice = 0
 let ordersArray = []
 let name = ''
+let cardNumber = ''
+let cvv = ''
 
 document.addEventListener('click', function (e) {
   //  console.log(e.target.dataset.remove)
@@ -20,39 +26,78 @@ document.addEventListener('click', function (e) {
     checkoutOrderItems(e.target.dataset.add)
   }
 
-  else if(e.target.dataset.remove){
+  else if (e.target.dataset.remove) {
     removeOrderItem(e.target.dataset.remove)
   }
 
-  else if(e.target.id == 'purchase-btn' ){
+  else if (e.target.id == 'purchase-btn') {
     renderPaymentModal()
   }
 
-  else if(e.target.id == 'pay-btn'){
+  else if (e.target.id == 'pay-btn') {
+    // console.log(e.target.id == 'pay-btn')
+
     e.preventDefault()
-    const paymentData = new FormData(paymentForm)
-     name = paymentData.get('fullName')
-     console.log(name)
-    
-    completeOrderNote()
-    HidePaymentModal()
+    if (validatForm() == true) {
+      HidePaymentModal()
+      completeOrderNote()
+
+    }
+
+
+
+
+
   }
 })
 
+function validatForm() {
+  const paymentData = new FormData(paymentForm)
+  name = paymentData.get('fullName')
+  cardNumber = paymentData.get('cardNumber')
+  cvv = paymentData.get('cvv')
+  console.log(name, cardNumber, cvv)
+  if (name === '') {
+    window.alert('Please enter your name')
+    return false
+  }
+
+  if (cardNumber === '') {
+    window.alert('Please enter your CardNumber')
+    return false
+  }
+
+  if (cvv === '') {
+    window.alert('Please enter your CVV')
+    return false
+  }
 
 
 
-function completeOrderNote(){
+
+  return true
+
+
+}
+
+
+
+
+
+
+
+
+function completeOrderNote() {
   checkoutEL.innerHTML = `<div class='thanks-note'>
   <p > ${name}! thank you for ordering.
    Your order is on the way...</p>
   </div>`
 }
 
-function renderPaymentModal(){
+function renderPaymentModal() {
   paymentSectionEl.style.display = 'block'
 }
-function HidePaymentModal(){
+function HidePaymentModal() {
   paymentSectionEl.style.display = 'none'
 }
 
@@ -73,16 +118,16 @@ function checkoutOrderItems(itemId) {
 
 }
 
-function removeOrderItem(itemId){
-  const targetMenuItem = menuArray.filter(function(item){
+function removeOrderItem(itemId) {
+  const targetMenuItem = menuArray.filter(function (item) {
     return item.id == itemId
   })[0]
-    if(ordersArray.includes(targetMenuItem)){
-      ordersArray.pop(targetMenuItem)
-      totalPrice -= targetMenuItem.price
-      renderCheckoutSection()
-      renderOrderItemSection()
-    }
+  if (ordersArray.includes(targetMenuItem)) {
+    ordersArray.pop(targetMenuItem)
+    totalPrice -= targetMenuItem.price
+    renderCheckoutSection()
+    renderOrderItemSection()
+  }
 }
 
 
@@ -106,8 +151,8 @@ function getOrderSectionHtml() {
 
 function getOrderItemHtml() {
   let orderhtml = ``
-    ordersArray.forEach(function (order) {
-      orderhtml += ` <div class="checkout-items-container">
+  ordersArray.forEach(function (order) {
+    orderhtml += ` <div class="checkout-items-container">
       <div class="checkout-items">
         <p>${order.name}
         </p>
@@ -119,8 +164,8 @@ function getOrderItemHtml() {
 
 
     </div>`
-    })
-  
+  })
+
   return orderhtml
 }
 
@@ -150,7 +195,7 @@ function renderOrderItemSection() {
 
 
 }
-function renderCheckoutSection(){
+function renderCheckoutSection() {
   checkoutEL.innerHTML = getOrderSectionHtml()
 }
 
