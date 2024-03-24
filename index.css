@@ -79,41 +79,15 @@ p {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Layout */
 
 
 .container {
   width: 600px;
   height: 1161px;
-  border: 2px solid red;
   background-color: #E7C370;
   margin: 0 auto;
   padding-bottom: 20px;
-
-
 }
 
 /* Header layout */
@@ -188,16 +162,13 @@ header {
 
 #remove-btn {
 
-  width: 77px;
-  height: 22px;
-  font-weight: 400;
   font-size: 12px;
-  line-height: 24px;
   color: #94211D;
   outline: none;
   background: none;
   border: none;
   padding: 0;
+  margin-left: 5px;
 
 
 
