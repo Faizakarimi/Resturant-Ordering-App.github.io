@@ -112,7 +112,7 @@ function checkoutOrderItems(itemId) {
 
 function removeOrderItem(itemId) {
   const targetMenuItem = menuArray.filter(function (item) {
-    return item.id === Number(itemId)
+    return item.id == itemId
   })[0]
   if (ordersArray.includes(targetMenuItem)) {
     ordersArray.pop(targetMenuItem)
