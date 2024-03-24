@@ -82,8 +82,7 @@ function validatForm() {
 
 function completeOrderNote() {
   checkoutEL.innerHTML = `<div class='thanks-note'>
-  <p > ${name}! thank you for ordering.
-   Your order is on the way...</p>
+  <p > Thanks, ${name}! Your order is on its way...</p>
   </div>`
 }
 
