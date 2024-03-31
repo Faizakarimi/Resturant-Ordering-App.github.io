@@ -99,14 +99,11 @@ function checkoutOrderItems(itemId) {
 
   })[0]
 
-  if (!ordersArray.includes(targetMenuItem)) {
-    ordersArray.push(targetMenuItem)
-    totalPrice += targetMenuItem.price
-    renderCheckoutSection()
-    renderOrderItemSection(targetMenuItem)
-  }
-  //  console.log(ordersArray)
-  // console.log(totalPrice)
+  ordersArray.push(targetMenuItem)
+  totalPrice += targetMenuItem.price
+  renderCheckoutSection()
+  renderOrderItemSection(targetMenuItem)
+
 
 }
 
@@ -119,6 +116,7 @@ function removeOrderItem(itemId) {
     totalPrice -= targetMenuItem.price
     renderCheckoutSection()
     renderOrderItemSection()
+
   }
 }
 
